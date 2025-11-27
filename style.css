@@ -1,0 +1,100 @@
+/* CSS principal — variables + layout + effets demandés */
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent:#f9a826;
+  --muted:#aab3c4;
+  --glass: rgba(255,255,255,0.04);
+  --max-width:1100px;
+}
+
+/* Reset simple */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg,var(--bg),#071028); color:#eef2f7;}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:1rem}
+
+/* Header */
+.site-header{padding:1rem 0;background:transparent;position:relative}
+.site-header .navwrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:1px}
+.logo-dot{color:var(--accent)}
+
+/* Nav */
+.main-nav{list-style:none;display:flex;gap:1rem}
+.main-nav a{color:var(--muted);text-decoration:none;padding:.4rem .6rem;border-radius:6px;transition:all .25s ease}
+.main-nav a:hover{color:#fff;background:rgba(255,255,255,0.04);transform:translateY(-3px)}
+
+/* Hero */
+.hero{padding:4rem 0;background-image:linear-gradient(135deg,rgba(0,0,0,0.25),transparent);overflow:hidden}
+.hero-inner{padding:2rem;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);border-radius:12px}
+.hero h2{font-family:'Playfair Display';font-size:2rem;margin-bottom:.5rem}
+.btn{display:inline-block;background:var(--accent);color:#071028;padding:.6rem 1rem;border-radius:8px;text-decoration:none;font-weight:700;transition:transform .2s ease,opacity .2s}
+
+/* Cards */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:1.5rem}
+.card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .3s ease,filter .3s}
+.card img{width:100%;height:160px;object-fit:cover;display:block;transition:transform .6s ease,opacity .3s}
+.card h3{padding:1rem .9rem .2rem}
+.card p{padding:0 .9rem 1rem;color:var(--muted)}
+.card-link{display:inline-block;margin:.5rem .9rem 1rem;background:transparent;color:var(--accent);text-decoration:none;opacity:.95}
+.card:hover{transform:translateY(-8px) scale(1.01);filter:brightness(1.06)}
+.card:hover img{transform:scale(1.06);opacity:.95}
+
+/* Timeline */
+.timeline ol{list-style:none;padding-left:0;display:grid;gap:1rem}
+.timeline li{background:var(--card);padding:1rem;border-radius:8px;position:relative;overflow:hidden}
+.timeline li::before{content:'';position:absolute;left:0;top:0;height:100%;width:6px;background:linear-gradient(180deg,var(--accent),#ffdd88);opacity:.9;transform:translateX(-6px);transition:transform .25s}
+.timeline li:hover::before{transform:translateX(0)}
+
+/* Teams grid uses CSS Grid */
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1rem}
+.team{background:var(--glass);padding:1rem;border-radius:8px;min-height:120px;display:flex;flex-direction:column;justify-content:center;transition:transform .2s,opacity .2s}
+.team:nth-child(odd){transform:translateY(4px)}
+
+/* Players */
+.players-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.player{background:var(--card);padding:1rem;border-radius:8px;}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.8rem}
+.gallery-grid figure{background:var(--card);border-radius:8px;overflow:hidden;position:relative}
+.gallery-grid img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .5s ease,filter .35s}
+.gallery-grid figure:hover img{transform:scale(1.08);filter:grayscale(.2)}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 320px;gap:1rem;align-items:start;margin-top:1rem}
+.contact-form{background:var(--card);padding:1rem;border-radius:8px;display:flex;flex-direction:column;gap:.6rem;overflow:auto}
+.contact-form label{display:flex;flex-direction:column;font-size:.9rem;color:var(--muted)}
+.contact-form input, .contact-form textarea{margin-top:.4rem;padding:.6rem;border-radius:6px;border:none;background:#071022;color:#fff;outline:none}
+.contact-info{background:var(--glass);padding:1rem;border-radius:8px}
+
+/* Footer */
+.site-footer{margin-top:2rem;padding:2rem 0;color:var(--muted);font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+
+/* Utilities */
+h2{font-family:'Playfair Display';font-size:1.4rem;margin-bottom:.6rem}
+h3{font-size:1.05rem}
+
+/* Pseudo-class and child usage examples */
+.grid-3 article:only-child{outline:2px dashed rgba(255,255,255,0.03)} /* demonstrates :only-child */
+.team:nth-child(3){box-shadow:0 10px 30px rgba(0,0,0,0.6)} /* nth-child used */
+.card::before{content:'';position:absolute;inset:0;border-radius:10px;pointer-events:none;box-shadow:inset 0 0 80px rgba(0,0,0,0.15)} /* ::before used */
+
+/* Responsive */
+@media(max-width:800px){
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero h2{font-size:1.4rem}
+}
+
+/* small header variant */
+.site-header.small{padding:.6rem 0;background:transparent;backdrop-filter:blur(3px)}
+
+/* subtle opacity/transitions demonstration */
+.card-link{opacity:.9;transition:opacity .2s ease}
+.card-link:hover{opacity:1;transform:translateY(-3px)}
+
+/* accessibility focus */
+a:focus{outline:2px solid rgba(249,168,38,0.6);outline-offset:2px}
